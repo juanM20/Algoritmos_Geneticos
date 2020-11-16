@@ -142,6 +142,7 @@ if __name__ == "__main__":
 
 
     variable = 10
+    variable2 = 2
 
     opc = int(input('''
 
