@@ -51,7 +51,7 @@ def Generar_poblacion(num_poblacion,num_alelos,opc):
             poblacion.append(round(funcion2(int(str_bin,2)),2))
         elif opc == 3:
             poblacion.append(round(funcion3(int(str_bin,2)),2))  
-    
+        
     arreglo_x = [i for i in range(1,num_poblacion+1)]
 
     # print(len(poblacion))
