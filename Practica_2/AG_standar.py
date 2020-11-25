@@ -57,7 +57,6 @@ if __name__ == "__main__":
     for i in range(num_generacion):
         
         seleccion_cruza = []
-        seleccion_mutacion = []
         
         Hijos = []
         
@@ -69,7 +68,24 @@ if __name__ == "__main__":
             seleccion_cruza = seleccion_1(poblacion)
             
             if seleccion_cruza[0].apto_cruza == False or seleccion_cruza[1].apto_cruza == False:
-                print("No hay cruza en generacion: ", num_generacion)
+                print("No hay cruza en generacion: ", i)
+                
+                if aleatorio_mutacion <= MUTACION:
+                    
+                    r = random.randint(0, 1)
+                    opc = input('''
+                                    1. Mutacion aleatoria
+                                    2. Mutacion intercambio de bit
+                                    Elige una opción: 
+                                ''')
+                    
+                    if opc == 1:
+                        mutacion_desplazamiento(seleccion_cruza[r])
+                    else:
+                        CMintercambio(seleccion_cruza[r])
+                    
+                    poblacion = seleccion_cruza.copy()
+                
             else:
                 Hijos = Cruza_Punto(seleccion_cruza)
                 
@@ -87,8 +103,7 @@ if __name__ == "__main__":
                     else:
                         CMintercambio(Hijos[r])
         
-        else:
-            Hijos = Cruza_Punto(poblacion)
+        elif aleatorio_cruza > CRUZA:
                 
             if aleatorio_mutacion <= MUTACION:
                 
@@ -100,13 +115,18 @@ if __name__ == "__main__":
                             ''')
                 
                 if opc == 1:
-                    mutacion_desplazamiento(Hijos[r])
+                    mutacion_desplazamiento(poblacion[r])
                 else:
-                    CMintercambio(Hijos[r])
+                    CMintercambio(poblacion[r])
         
+    
         
-        poblacion = Hijos.copy()
-        graficar(poblacion)
+        for ind in poblacion:
+            print(ind.genotipo)
+            print(ind.fenotipo) 
+       
+        
+        #graficar(poblacion)
             
             
                 

@@ -1,5 +1,5 @@
 import math
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from Individuo import * 
 
 def funcion1(num):
@@ -12,11 +12,11 @@ def funcion3(num):
     return ((math.exp(num) - math.exp(-num))/num)
 
 
-def graficar(poblacion):
+# def graficar(poblacion):
     
-    arreglo_y = [ind.aptitud for ind in poblacion]
-    arreglo_x = [i for i in range(1,len(poblacion)+1)]
+#     arreglo_y = [ind.aptitud for ind in poblacion]
+#     arreglo_x = [i for i in range(1,len(poblacion)+1)]
 
-    plt.stem(arreglo_x, arreglo_y)
-    plt.show()
+#     plt.stem(arreglo_x, arreglo_y)
+#     plt.show()
 

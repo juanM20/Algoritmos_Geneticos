@@ -9,7 +9,6 @@ def seleccion_1(poblacion):
     sum = 0
 
     for ind in poblacion:
-        ind.aptitud = funcion2(ind.fenotipo)
         sum = sum + ind.aptitud
 
     for ind in poblacion:
