@@ -47,7 +47,7 @@ def Generar_poblacion(num_poblacion,num_alelos,opc):
       
 
 if __name__ == "__main__":
-
+    
     opc = int(input('''
 
             Selecciona la función (escribe número).

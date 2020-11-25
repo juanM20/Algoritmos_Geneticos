@@ -69,6 +69,7 @@ if __name__ == "__main__":
 
     variable = 10
     variable2 = 2
+    variable3 = 3
 
     opc = int(input('''
 
