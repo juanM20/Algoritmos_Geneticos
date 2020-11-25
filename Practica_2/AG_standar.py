@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
             1. f(x) = x^2
             2. f(X) = |(x-5)/2+sin(x)|
-            3. f(x) = (e^x - e^-x)/x 
+            3. f(x) = (e^x - e^-x)
     '''))
 
     num_poblacion = 2
@@ -60,9 +60,11 @@ if __name__ == "__main__":
         
         Hijos = []
         
-        aleatorio_cruza = random.uniform(0,1)
-        aleatorio_mutacion = random.uniform(0,1)
-        
+        aleatorio_cruza = random.random()
+        print(aleatorio_cruza)
+        aleatorio_mutacion = random.random()
+        print(aleatorio_mutacion)
+
         if aleatorio_cruza <= CRUZA:
             
             seleccion_cruza = seleccion_1(poblacion)
@@ -126,7 +128,7 @@ if __name__ == "__main__":
             print(ind.fenotipo) 
        
         
-        #graficar(poblacion)
+        graficar(poblacion)
             
             
                 

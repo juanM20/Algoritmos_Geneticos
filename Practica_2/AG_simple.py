@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
             1. f(x) = x^2
             2. f(X) = |(x-5)/2+sin(x)|
-            3. f(x) = (e^x - e^-x)/x 
+            3. f(x) = (e^x - e^-x) 
     '''))
 
     num_poblacion = 4
