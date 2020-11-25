@@ -2,8 +2,7 @@ from Individuo import *
 from Funciones_seleccion import *
 from Funciones_Cruza import *
 from Funciones_Mutacion import *
-
-import matplotlib.pyplot as plt
+from Funciones_math.py
 
 def Generar_poblacion(num_poblacion,num_alelos,opc):
 
@@ -21,7 +20,7 @@ def Generar_poblacion(num_poblacion,num_alelos,opc):
             
             ind = Individuo(cromosoma)
             ind.Generar_fenotipo()
-            ind.Generar_Aptitud()
+            ind.Generar_Aptitud(opc)
             poblacion.append(ind)
             cromosoma = []
         else:
@@ -29,24 +28,15 @@ def Generar_poblacion(num_poblacion,num_alelos,opc):
                 cromosoma.append(1)
             else:
                 cromosoma.append(0)
-        
     
+    return poblacion
 
 
-    # print(len(arreglo_bin))
-    # print(arreglo_bin)   
-
-    # arreglo_x = [i for i in range(1,num_poblacion+1)]
-
-    # print(len(poblacion))
-    # print(poblacion)
-
-
-    # plt.stem(arreglo_x, poblacion)
-    # plt.show()
-      
 
 if __name__ == "__main__":
+    
+    CRUZA = 0.80
+    MUTACION = 0.20
     
     opc = int(input('''
 
@@ -57,15 +47,81 @@ if __name__ == "__main__":
             3. f(x) = (e^x - e^-x)/x 
     '''))
 
-    num_poblacion = 4
+    num_poblacion = 2
     num_generacion =  int(input("Ponga el numero de Generaciones \n"))
     num_alelos =  int(input("Ponga el tamaño de los alelos \n"))
     
     poblacion = []
+    poblacion = Generar_poblacion(num_poblacion,num_alelos,opc)
 
     for i in range(num_generacion):
         
-        poblacion = Generar_poblacion(num_poblacion,num_alelos,opc)
+        seleccion_cruza = []
+        seleccion_mutacion = []
+        
+        Hijos = []
+        
+        aleatorio_cruza = random.uniform(0,1)
+        aleatorio_mutacion = random.uniform(0,1)
+        
+        if aleatorio_cruza <= CRUZA:
+            
+            seleccion_cruza = seleccion_1(poblacion)
+            
+            if seleccion_cruza[0].apto_cruza == False or seleccion_cruza[1].apto_cruza == False:
+                print("No hay cruza en generacion: ", num_generacion)
+            else:
+                Hijos = Cruza_Punto(seleccion_cruza)
+                
+                if aleatorio_mutacion <= MUTACION:
+                    
+                    r = random.randint(0, 1)
+                    opc = input('''
+                                    1. Mutacion aleatoria
+                                    2. Mutacion intercambio de bit
+                                    Elige una opción: 
+                                ''')
+                    
+                    if opc = 1:
+                        mutacion_desplazamiento(Hijos[r])
+                    else:
+                        CMIntercambio(Hijos[r])
+        
+        else:
+            Hijos = Cruza_Punto(poblacion)
+                
+                if aleatorio_mutacion <= MUTACION:
+                    
+                    r = random.randint(0, 1)
+                    opc = input('''
+                                    1. Mutacion aleatoria
+                                    2. Mutacion intercambio de bit
+                                    Elige una opción: 
+                                ''')
+                    
+                    if opc = 1:
+                        mutacion_desplazamiento(Hijos[r])
+                    else:
+                        CMIntercambio(Hijos[r])
+        
+        
+        poblacion = Hijos.copy()
+        graficar(poblacion)
+            
+            
+                
+                   
+                    
+        
+            
+            
+        
+        
+        
+        
+        
+        
+        
 
 
 
