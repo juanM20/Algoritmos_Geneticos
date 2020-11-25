@@ -2,7 +2,7 @@ from Individuo import *
 from Funciones_seleccion import *
 from Funciones_Cruza import *
 from Funciones_Mutacion import *
-from Funciones_math.py
+from Funciones_math import *
 
 def Generar_poblacion(num_poblacion,num_alelos,opc):
 
@@ -82,27 +82,27 @@ if __name__ == "__main__":
                                     Elige una opción: 
                                 ''')
                     
-                    if opc = 1:
+                    if opc == 1:
                         mutacion_desplazamiento(Hijos[r])
                     else:
-                        CMIntercambio(Hijos[r])
+                        CMintercambio(Hijos[r])
         
         else:
             Hijos = Cruza_Punto(poblacion)
                 
-                if aleatorio_mutacion <= MUTACION:
-                    
-                    r = random.randint(0, 1)
-                    opc = input('''
-                                    1. Mutacion aleatoria
-                                    2. Mutacion intercambio de bit
-                                    Elige una opción: 
-                                ''')
-                    
-                    if opc = 1:
-                        mutacion_desplazamiento(Hijos[r])
-                    else:
-                        CMIntercambio(Hijos[r])
+            if aleatorio_mutacion <= MUTACION:
+                
+                r = random.randint(0, 1)
+                opc = input('''
+                                1. Mutacion aleatoria
+                                2. Mutacion intercambio de bit
+                                Elige una opción: 
+                            ''')
+                
+                if opc == 1:
+                    mutacion_desplazamiento(Hijos[r])
+                else:
+                    CMintercambio(Hijos[r])
         
         
         poblacion = Hijos.copy()

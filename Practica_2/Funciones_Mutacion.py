@@ -1,6 +1,5 @@
 from Individuo import Individuo
 import random
-import numpy as np
 
 def mutacion_desplazamiento(individuo):
     random.shuffle(individuo.genotipo)
