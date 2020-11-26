@@ -3,7 +3,7 @@ import random
 
 def Cpunto(p1,p2):
     
-    x = random.randint(0, (len(p1)-1))
+    x = random.randint(1, (len(p1)-1))
     h1 = [] 
     h2 = []
     for i in range(x):
@@ -32,9 +32,11 @@ def Cruza_dosPuntos(poblacion):
 
     for i in range(len(poblacion)):
         if i%2 == 0:
-            hijo1 = []
-            hijo2 = []
-            hijo1, hijo2 = xcTwoPoint(poblacion[i-1].genotipo, poblacion[i].genotipo)
+            hijo1 = Individuo()
+            hijo2 = Individuo()
+            hijo1.genotipo, hijo2.genotipo = cxTwoPoint(poblacion[i-1].genotipo, poblacion[i].genotipo)
+            hijo1.Generar_fenotipo()
+            hijo2.Generar_fenotipo()
             Hijos.append(hijo1)
             Hijos.append(hijo2)
 
@@ -49,9 +51,11 @@ def Cruza_Punto(poblacion):
 
     for i in range(len(poblacion)):
         if i%2 == 0:
-            hijo1 = []
-            hijo2 = []
-            hijo1, hijo2 = Cpunto(poblacion[i-1].genotipo, poblacion[i].genotipo)
+            hijo1 = Individuo()
+            hijo2 = Individuo()
+            hijo1.genotipo, hijo2.genotipo = Cpunto(poblacion[i-1].genotipo, poblacion[i].genotipo)
+            hijo1.Generar_fenotipo()
+            hijo2.Generar_fenotipo()
             Hijos.append(hijo1)
             Hijos.append(hijo2)
 

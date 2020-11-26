@@ -3,6 +3,7 @@ import random
 
 def mutacion_desplazamiento(individuo):
     random.shuffle(individuo.genotipo)
+    individuo.Generar_fenotipo()
 
 
 
@@ -18,6 +19,8 @@ def CMintercambio(p1):
         b = p1.genotipo[y]
         p1.genotipo[y] = a
         p1.genotipo[x] = b
+    
+    p1.Generar_fenotipo()
          
          
 def mutacionInsercion(ind1):
@@ -47,3 +50,5 @@ def mutacionInsercion(ind1):
             for i in range(inicio, fin, -1):
                 ind1.genotipo[i] = ind1.genotipo[i-1]
             ind1.genotipo[fin] = aux
+
+    ind1.Generar_fenotipo()
