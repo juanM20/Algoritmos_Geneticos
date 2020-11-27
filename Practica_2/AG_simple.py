@@ -1,77 +1,45 @@
-import random
-import math
-import matplotlib.pyplot as plt
+from Individuo import Individuo
+from Funciones_seleccion import *
+from Funciones_Cruza import *
+from Funciones_Mutacion import *
+from Funciones_math import *
 
 
-def funcion1(num):
-    return num**2
 
-def funcion2(num):
-    return abs((num-5)/(2+math.sin(num)))
-
-def funcion3(num):
-    return ((math.exp(num) - math.exp(-num))/num)
-
-
-def Generar_poblacion(num_poblacion,num_alelos,opc):
-
+def Generar_poblacion(num_poblacion, num_alelos, opc):
+    
     cromosoma = []
-    arreglo_bin = []
     poblacion = []
 
-    for i in range(1,(num_poblacion*num_alelos)+1):
-        
-        if i%num_alelos == 0:
+    for i in range(1, (num_poblacion*num_alelos)+1):
+
+        if i % num_alelos == 0:
 
             if random.random() > 0.5:
                 cromosoma.append(1)
             else:
                 cromosoma.append(0)
-            
-            arreglo_bin.append(cromosoma)
+
+            ind = Individuo(cromosoma)
+            ind.Generar_fenotipo()
+            ind.Generar_Aptitud(opc)
+            poblacion.append(ind)
             cromosoma = []
         else:
             if random.random() > 0.5:
                 cromosoma.append(1)
             else:
                 cromosoma.append(0)
-        
-    # print(len(arreglo_bin))
-    print(arreglo_bin)   
 
-    str_bin = ""
-
-    for i in range(len(arreglo_bin)):
-
-        str_bin = "".join( map(str,arreglo_bin[i]) )
-
-        if opc == 1:
-            poblacion.append(round(funcion1(int(str_bin,2)),2))
-        elif opc == 2:
-            poblacion.append(round(funcion2(int(str_bin,2)),2))
-        elif opc == 3:
-            poblacion.append(round(funcion3(int(str_bin,2)),2))  
-        
-    # arreglo_x = [i for i in range(1,num_poblacion+1)]
-
-    # print(len(poblacion))
-    # print(poblacion)
-
-
-    # plt.stem(arreglo_x, poblacion)
-    # plt.show()
-  
+    return poblacion
 
     
 
 if __name__ == "__main__":
 
-
-    variable = 10
-    variable2 = 2
-    variable3 = 3
-    variable4 = 1
-
+    CRUZA = 0.8
+    MUTACION = 1-CRUZA
+    
     opc = int(input('''
 
             Selecciona la función (escribe número).
@@ -81,12 +49,124 @@ if __name__ == "__main__":
             3. f(x) = (e^x - e^-x) 
     '''))
 
-    num_poblacion = 4
-    num_generacion =  int(input("Ponga el numero de Generaciones \n"))
-    num_alelos =  int(input("Ponga el tamaño de los alelos \n"))
+    num_poblacion = int(input("Número de población \n"))
+    num_generacion =  int(input("Numero de Generaciones \n"))
+    num_alelos =  int(input("Tamaño de los alelos \n"))
+    
+    poblacion = []
+    poblacion = Generar_poblacion(num_poblacion,num_alelos,opc)
+    
+    for ind in poblacion:
+        print(ind.genotipo, ind.fenotipo, ind.aptitud)
+        
+    
     for i in range(num_generacion):
         
-        Generar_poblacion(num_poblacion,num_alelos,opc)
+        print(f'''
+              
+              -------------------
+                GENERACION {i+1}
+              -------------------
+              
+              ''')
+          
+        seleccion = []
+        Hijos = []
+        
+        seleccion = Seleccion_ruleta(poblacion)
+        
+        print("Individuos seleccionados: ")
+        for ind in seleccion:
+            print(ind.genotipo, ind.fenotipo, ind.aptitud)
+            
+        seleccion_cruza = seleccion[:int(len(seleccion) * CRUZA)].copy()
+        seleccion_mutacion = seleccion[int(len(seleccion) * CRUZA):].copy()
+        
+        
+        opc_cruza = int(input('''
+
+                            Selecciona el tipo de cruza:
+
+                            1. Cruza por un punto.
+                            2. Cruza por dos puntos.
+
+                        '''))
+
+        if opc_cruza == 1:
+
+            Hijos = Cruza_Punto(seleccion_cruza)
+
+            opc_mutacion = int(input('''
+
+                            Selecciona el tipo de mutacion:
+
+                            1. Mutación aleatoria.
+                            2. Mutación por intercambio de bit.
+                            3. Mutación por Inserción.
+
+                            '''))
+
+            if opc_mutacion == 1:
+
+                for ind in seleccion_mutacion:
+                    mutacion_desplazamiento(ind)
+
+            elif opc_mutacion == 2:
+
+                for ind in seleccion_mutacion:
+                    CMintercambio(ind)
+
+            elif opc_mutacion == 3:
+
+                for ind in seleccion_mutacion:
+                    mutacionInsercion(ind)
+
+        elif opc_cruza == 2:
+
+            Hijos = Cruza_Punto(seleccion_cruza)
+
+            opc_mutacion = int(input('''
+                            
+                            Selecciona el tipo de mutacion:
+                            
+                            1. Mutación aleatoria.
+                            2. Mutación por intercambio de bit.
+                            3. Mutación por Inserción.    
+                                     
+                            '''))
+
+            if opc_mutacion == 1:
+
+                for ind in seleccion_mutacion:
+                    mutacion_desplazamiento(ind)
+
+            elif opc_mutacion == 2:
+
+                for ind in seleccion_mutacion:
+                    CMintercambio(ind)
+
+            elif opc_mutacion == 3:
+
+                for ind in seleccion_mutacion:
+                    mutacionInsercion(ind)
+        
+        
+        print(f"Hijos de la generacion {i+1}")
+        for ind in Hijos:
+            ind.Generar_Aptitud(opc)
+            print(ind.genotipo, ind.fenotipo, ind.aptitud)
+
+        print(f"Mutantes de la generacion {i+1}")
+        for ind in seleccion_mutacion:
+            print(ind.genotipo, ind.fenotipo, ind.aptitud)
+
+        Hijos.extend(seleccion_mutacion)
+        poblacion = Hijos.copy()
+        
+        graficar(poblacion)
+        
+        random.shuffle(poblacion)
+
      
 
     

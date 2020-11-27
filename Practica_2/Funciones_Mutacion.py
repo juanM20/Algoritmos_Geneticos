@@ -37,7 +37,7 @@ def mutacionInsercion(ind1):
             ind1.genotipo[fin] = aux
         else:
             aux = ind1.genotipo[inicio]
-            for i in range(inicio, fin+1):
+            for i in range(inicio, fin-1):
                 ind1.genotipo[i] = ind1.genotipo[i+1]
             ind1.genotipo[fin] = aux
     else:

@@ -45,8 +45,8 @@ if __name__ == "__main__":
     '''))
 
     num_poblacion = 2
-    num_generacion = int(input("Ponga el numero de Generaciones \n"))
-    num_alelos = int(input("Ponga el tamaño de los alelos \n"))
+    num_generacion = int(input("Numero de Generaciones \n"))
+    num_alelos = int(input("Tamaño de los alelos \n"))
 
     poblacion = []
     poblacion = Generar_poblacion(num_poblacion, num_alelos, opc1)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         print(f'''
               
               -------------------
-                GENERACION {i}
+                GENERACION {i+1}
               -------------------
               
               ''')
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
             Hijos = Cruza_Punto(poblacion)
 
-            print("Hijos de generacion: ",i)
+            print("Hijos de generacion: ",i+1)
             for ind in Hijos:
                 print(ind.genotipo)
                 print(ind.fenotipo)
