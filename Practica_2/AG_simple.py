@@ -162,7 +162,15 @@ if __name__ == "__main__":
 
         Hijos.extend(seleccion_mutacion)
         poblacion = Hijos.copy()
+
+        aptitudes = []
+        for i in poblacion:
+          aptitudes.append(i.aptitud)   
         
+        print("Aptitud maxima local de población",max(aptitudes))
+        print("Aptitud minima local de población",min(aptitudes))
+             
+
         graficar(poblacion)
         
         random.shuffle(poblacion)
