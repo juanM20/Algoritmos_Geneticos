@@ -21,8 +21,23 @@ def CMintercambio(p1):
         p1.genotipo[x] = b
     
     p1.Generar_fenotipo()
-         
-         
+
+def mutacion_IR(ind1): #Mutacion por intercambio reciproco
+    while True:
+        inicio = random.randint(0, len(ind1.genotipo) - 1)
+        fin = random.randint(0, len(ind1.genotipo) - 1)
+        if (inicio!=fin):
+            break
+    
+    aux = ind1.genotipo[inicio]
+    ind1.genotipo[inicio] = ind1.genotipo[fin]
+    ind1.genotipo[fin] = aux
+
+    ind1.Generar_fenotipo()
+
+def mutacion_heuristica(ind1):
+    
+    
 def mutacionInsercion(ind1):
     while True:
         inicio = random.randint(0, len(ind1.genotipo) - 1)
