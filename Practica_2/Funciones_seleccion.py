@@ -36,10 +36,7 @@ def Seleccion_ruleta(poblacion):
     
     seleccion = []
     Valores_esperados = []
-    
-    for ind in poblacion:
-        ind.aptitud = funcion2(ind.fenotipo)    
-
+     
     aptitudes = [ind.aptitud for ind in poblacion]
     sumatoria = sum(aptitudes)
     f = sumatoria / len(poblacion)
@@ -50,6 +47,88 @@ def Seleccion_ruleta(poblacion):
     
     T = sum(Valores_esperados)
 
+    while len(seleccion) < len(poblacion):
+        r = random.uniform(0, T)
+        suma = 0 
+        for ind in poblacion:
+            suma = suma + ind.prob
+            if suma >= r:
+                ind.apto_cruza = True
+                seleccion.append(ind)
+                break
+
+    return seleccion
+
+
+def Seleccion_SobranteEstocastico_sinReemplazo(poblacion):
+    
+    seleccion = []
+    Valores_esperados = []
+    
+    aptitudes = [ind.aptitud for ind in poblacion]
+    sumatoria = sum(aptitudes)
+    f = sumatoria / len(poblacion)
+    
+    for ind in poblacion:
+        ind.prob = ind.aptitud / f
+        Valores_esperados.append(ind.aptitud / f) 
+    
+    enteros = []
+    
+    for i in range(len(Valores_esperados)):
+        dec, entero = math.modf(Valores_esperados[i])
+        enteros.append(entero)
+
+    dif = []
+    
+    for i in range(len(Valores_esperados)):
+        dif.append(Valores_esperados[i]-enteros[i])
+
+    i=0
+    while(len(seleccion) < len(poblacion)):
+        
+        if(random.randint(0,1) == 1):
+            poblacion[i].apto_cruza = True
+            seleccion.append(poblacion[i])
+  
+        if(i < len(poblacion)-1):
+            i = i + 1
+        else:
+            i = 0
+            
+    return seleccion
+    
+    
+def Seleccion_SobranteEstocastico_conReemplazo(poblacion):
+    
+    seleccion = []
+    Valores_esperados = []
+    
+    aptitudes = [ind.aptitud for ind in poblacion]
+    sumatoria = sum(aptitudes)
+    f = sumatoria / len(poblacion)
+    
+    for ind in poblacion:
+        ind.prob = ind.aptitud / f
+        Valores_esperados.append(ind.aptitud / f) 
+    
+    enteros = []
+    
+    for i in range(len(Valores_esperados)):
+        dec, entero = math.modf(Valores_esperados[i])
+        enteros.append(entero)
+
+    dif = []
+    
+    for i in range(len(Valores_esperados)):
+        dif.append(Valores_esperados[i]-enteros[i])
+        poblacion[i].prob = Valores_esperados[i]-enteros[i]
+        
+    prob = []
+    T = sum(dif)
+    for i in range(len(dif)):
+        prob.append(dif[i]/T)
+    
     while len(seleccion) < len(poblacion):
         r = random.uniform(0, T)
         suma = 0 

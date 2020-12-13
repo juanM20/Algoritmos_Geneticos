@@ -73,7 +73,21 @@ if __name__ == "__main__":
         seleccion = []
         Hijos = []
         
-        seleccion = Seleccion_ruleta(poblacion)
+        opc_seleccion = int(input('''
+                              Elige el tipo de seleccion:
+                              
+                              1. Ruleta.
+                              2. Sobrante estocástico sin reemplazo.
+                              3. Sobrante estocástico con reemplazo.
+
+                              '''))
+
+        if opc_seleccion == 1:
+            seleccion = Seleccion_ruleta(poblacion)
+        elif opc_seleccion == 2:
+            seleccion = Seleccion_SobranteEstocastico_sinReemplazo(poblacion)
+        elif opc_seleccion == 3:
+            seleccion = Seleccion_SobranteEstocastico_conReemplazo(poblacion)
         
         print("Individuos seleccionados: ")
         for ind in seleccion:
