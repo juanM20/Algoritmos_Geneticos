@@ -333,7 +333,7 @@ def mutacion_heuristica(v1):
 			(v1[p1]==0 and v1[p2]==1 and v1[p3]==0 and v1[p4]==0) or \
 			(v1[p1]==0 and v1[p2]==0 and v1[p3]==1 and v1[p4]==0) or \
 			(v1[p1]==0 and v1[p2]==0 and v1[p3]==0 and v1[p4]==1)): #1000
-			v1 = L4_(v1, p1, p2, p3, 1)
+			v1 = L4_(v1, p1, p2, p3, p4, 1)
 			print("Despues: ", v1)
 		elif((v1[p1]==1 and v1[p2]==1 and v1[p3]==0 and v1[p4]==0) or \
 			(v1[p1]==1 and v1[p2]==0 and v1[p3]==1 and v1[p4]==0) or \
@@ -341,11 +341,11 @@ def mutacion_heuristica(v1):
 			(v1[p1]==0 and v1[p2]==1 and v1[p3]==1 and v1[p4]==0) or \
 			(v1[p1]==0 and v1[p2]==1 and v1[p3]==0 and v1[p4]==1) or \
 			(v1[p1]==0 and v1[p2]==0 and v1[p3]==1 and v1[p4]==1)): #1100
-			v1 = L4_(v1, p1, p2, p3, 2)
+			v1 = L4_(v1, p1, p2, p3, p4, 2)
 			print("Despues: ", v1)
 		elif((v1[p1]==1 and v1[p2]==1 and v1[p3]==1 and v1[p4]==0) or \
 			(v1[p1]==1 and v1[p2]==1 and v1[p3]==0 and v1[p4]==1) or \
 			(v1[p1]==1 and v1[p2]==0 and v1[p3]==1 and v1[p4]==1) or \
 			(v1[p1]==0 and v1[p2]==1 and v1[p3]==1 and v1[p4]==1)): #1110
-			v1 = L4_(v1, p1, p2, p3, 3)
+			v1 = L4_(v1, p1, p2, p3, p4, 3)
 			print("Despues: ", v1)
