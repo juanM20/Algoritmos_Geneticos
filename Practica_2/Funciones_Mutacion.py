@@ -66,7 +66,7 @@ def mutacionInsercion(ind1):
     ind1.Generar_fenotipo()
 
 def L3_(v1, p1, p2, p3, unos):
-    i = 0
+	i = 0
 	j = 0
 	k = 0
 	if(unos==1):
@@ -104,7 +104,7 @@ def L3_(v1, p1, p2, p3, unos):
 		v1[p2]=k
 	return v1
 
-def L4_(v1, p1, p2, p3, unos):
+def L4_(v1, p1, p2, p3, p4, unos):
 	i = 0
 	j = 0
 	k = 0
