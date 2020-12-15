@@ -32,7 +32,7 @@ def CUniforme(p1,p2):
         if mascara[i] == 1:
             h1.append(p1[i])
             h2.append(p2[i])
-        else
+        else:
             h1.append(p2[i])
             h2.append(p1[i])
 
