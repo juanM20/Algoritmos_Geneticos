@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
                             1. Cruza por un punto.
                             2. Cruza por dos puntos.
-
+                            3. Cruza uniforme
                         '''))
 
         if opc_cruza == 1:
@@ -117,7 +117,8 @@ if __name__ == "__main__":
                             1. Mutación aleatoria.
                             2. Mutación por intercambio de bit.
                             3. Mutación por Inserción.
-
+                            4. Mutación por Inserción recíproca.
+                            5. Mutación heurística.
                             '''))
 
             if opc_mutacion == 1:
@@ -134,19 +135,28 @@ if __name__ == "__main__":
 
                 for ind in seleccion_mutacion:
                     mutacionInsercion(ind)
+            
+            elif opc_mutacion == 4:
+                 for ind in seleccion_mutacion:
+                        mutacion_IR(ind)
+            
+            elif opc_mutacion == 5:
+                for ind in seleccion_mutacion:
+                        mutacion_IR(ind)   
 
         elif opc_cruza == 2:
 
             Hijos = Cruza_Punto(seleccion_cruza)
 
             opc_mutacion = int(input('''
-                            
+
                             Selecciona el tipo de mutacion:
-                            
+
                             1. Mutación aleatoria.
                             2. Mutación por intercambio de bit.
-                            3. Mutación por Inserción.    
-                                     
+                            3. Mutación por Inserción.
+                            4. Mutación por Inserción recíproca.
+                            5. Mutación heurística.
                             '''))
 
             if opc_mutacion == 1:
@@ -163,7 +173,53 @@ if __name__ == "__main__":
 
                 for ind in seleccion_mutacion:
                     mutacionInsercion(ind)
+            
+            elif opc_mutacion == 4:
+                 for ind in seleccion_mutacion:
+                        mutacion_IR(ind)
+            
+            elif opc_mutacion == 5:
+                for ind in seleccion_mutacion:
+                        mutacion_IR(ind)   
         
+        elif opc_cruza == 3:
+            
+            Hijos = Cruza_Uniforme(seleccion_cruza)
+
+            opc_mutacion = int(input('''
+
+                            Selecciona el tipo de mutacion:
+
+                            1. Mutación aleatoria.
+                            2. Mutación por intercambio de bit.
+                            3. Mutación por Inserción.
+                            4. Mutación por Inserción recíproca.
+                            5. Mutación heurística.
+                            '''))
+
+            if opc_mutacion == 1:
+
+                for ind in seleccion_mutacion:
+                    mutacion_desplazamiento(ind)
+
+            elif opc_mutacion == 2:
+
+                for ind in seleccion_mutacion:
+                    CMintercambio(ind)
+
+            elif opc_mutacion == 3:
+
+                for ind in seleccion_mutacion:
+                    mutacionInsercion(ind)
+            
+            elif opc_mutacion == 4:
+                 for ind in seleccion_mutacion:
+                        mutacion_IR(ind)
+            
+            elif opc_mutacion == 5:
+                for ind in seleccion_mutacion:
+                        mutacion_IR(ind)                
+                
         
         print(f"Hijos de la generacion {i+1}")
         for ind in Hijos:
