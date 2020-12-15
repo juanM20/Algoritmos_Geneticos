@@ -255,7 +255,7 @@ def L4_(v1, p1, p2, p3, p4, unos):
 #print(i)
 def mutacion_heuristica(v1):
 	v1 = np.array([0, 0, 0, 1, 1, 0])
-	L = random.randint(4) #Lambda=Numero de alhelos a cambiar de lugar
+	L = random.randint(5) #Lambda=Numero de alhelos a cambiar de lugar
 	if(L==0): #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		print("No hay mutacion: ")
 		print("Sin cambios: ", v1)
